@@ -1,0 +1,9 @@
+/* You can add global styles to this file, and also import other style files */
+.respuesta{
+    max-height: calc(70vh - 100px);
+    overflow: hidden;
+    overflow-y: scroll;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 15px;
+}
