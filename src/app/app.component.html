@@ -19,6 +19,7 @@
             <br>
             <!-- <input [(ngModel)]="prompt" class="form-control" name="prompt" placeholder="Escribe tu mensaje aqui.."> -->
             <textarea name="prompt" [(ngModel)]="prompt" class="form-control" cols="2" rows="2" placeholder="Escribe tu mensaje aqui.."></textarea>
+            <input type="file" name="" (change)="onFileSelected($event)" id="">
             <button class="btn btn-outline-primary mt-2 mr-2" (click)="generate()">Enviar</button>
             <button class="btn btn-outline-danger mt-2" (click)="limpiar()">Limpiar</button>
 
@@ -27,4 +28,3 @@
     </div>
 
 </div>
-

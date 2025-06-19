@@ -31,6 +31,22 @@ export class GoogleGeminiProService {
     }
   }
 
+  async recognizeImage(base64Image: string) {
+    if (!this.model) {
+      return;
+    }
+    try {
+      // For demonstration, send a prompt describing the image to the text generation model
+      const prompt = `Describe the content of this image: ${base64Image}`;
+      const result = await this.model.generateContent(prompt);
+      const response = await result.response;
+      return response.text();
+    } catch (error) {
+      console.error('Error recognizing image:', error);
+      throw error;
+    }
+  }
+
   async listModels() {
     if (!this.genIA) {
       throw new Error('GoogleGenerativeAI client not initialized. Call initialize() first.');

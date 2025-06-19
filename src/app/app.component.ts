@@ -15,13 +15,33 @@ import { LoadingComponent } from './shared/loading/loading.component';
 })
 export class AppComponent {
 
-  title = 'Angular Google Gemini IA';
+  title = 'Angular Gemini IA';
   result = '';
   prompt = '';
+  image = '';
   isLoading = false;
 
   constructor(private googleGeminiPro: GoogleGeminiProService) {
     this.googleGeminiPro.initialize(key);
+  }
+
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = async (e: any) => {
+        this.isLoading = true;
+        const base64Image = e.target.result as string;
+        try {
+          this.result = await this.googleGeminiPro.recognizeImage(base64Image);
+        } catch (error) {
+          this.result = 'Error recognizing image';
+          console.error(error);
+        }
+        this.isLoading = false;
+      };
+      reader.readAsDataURL(file);
+    }
   }
 
   async generate() {
